@@ -5,7 +5,7 @@ const ListaTareas = (props) => {
   return (
     <ul className="list-group my-5">
         {
-          props.arrTareas.map((elemento, indice) => <ItemTarea key={indice} dato={elemento}></ItemTarea>)
+          props.arrTareas.map((elemento, indice) => <ItemTarea key={indice} dato={elemento} borrarTarea={props.borrarTarea}></ItemTarea>)
         }
     </ul>
   );

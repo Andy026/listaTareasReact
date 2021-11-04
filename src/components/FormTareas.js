@@ -15,12 +15,17 @@ const FormTareas = () => {
     setTarea('');
   };
 
+  const borrarTarea = (nombre) => {
+    let _tareas = tareas.filter(elemento => elemento !== nombre);
+    setTareas(_tareas)
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit} className="container my-5">
         <div className="mb-3 d-flex">
           <input
-            className="form-control"
+            className="form-control mx-3"
             type="text"
             onChange={(event) => setTarea(event.target.value)}
             placeholder="Ingrese una tarea"
@@ -33,7 +38,7 @@ const FormTareas = () => {
       </form>
 
       <section className="container">
-        <ListaTareas arrTareas={tareas}></ListaTareas>
+        <ListaTareas arrTareas={tareas} borrarTarea={borrarTarea}></ListaTareas>
       </section>
     </>
   );
