@@ -12,6 +12,7 @@ const FormTareas = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setTareas([...tareas, tarea]);
+    setTarea('');
   };
 
   return (
@@ -23,6 +24,7 @@ const FormTareas = () => {
             type="text"
             onChange={(event) => setTarea(event.target.value)}
             placeholder="Ingrese una tarea"
+            value={tarea}
           ></input>
           <button className="btn btn-outline-primary text-center" type="submit">
             Agregar
@@ -31,7 +33,7 @@ const FormTareas = () => {
       </form>
 
       <section className="container">
-        <ListaTareas></ListaTareas>
+        <ListaTareas arrTareas={tareas}></ListaTareas>
       </section>
     </>
   );
