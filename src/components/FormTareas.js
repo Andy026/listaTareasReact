@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ListaTareas from "./ListaTareas";
 
 const FormTareas = () => {
-  const [tarea, setTarea] = useState("");
-  const [tareas, setTareas] = useState([]);
+  let tareasLocalStorage = JSON.parse(localStorage.getItem('listaTareas')) || [];
 
-  //const guardarTarea = (event) => {
-  //    setTarea(event.target.value);
-  //}
+  const [tarea, setTarea] = useState("");
+  const [tareas, setTareas] = useState(tareasLocalStorage);
+
+  //aqui uso el ciclo de vida del componente.
+  useEffect(() => {
+    //esto funciona en montaje y actualización
+    console.log('desde useEffect')
+    localStorage.setItem('listaTareas', JSON.stringify(tareas));
+  }, [tareas]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setTareas([...tareas, tarea]);
-    setTarea('');
+    setTarea("");
   };
 
   const borrarTarea = (nombre) => {
-    let _tareas = tareas.filter(elemento => elemento !== nombre);
-    setTareas(_tareas)
+    let _tareas = tareas.filter((elemento) => elemento !== nombre);
+    setTareas(_tareas);
   };
 
   return (
